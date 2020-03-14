@@ -1,9 +1,9 @@
 // import React from 'react';
 // import ReactDOM from 'react-dom';
 
-import { Case4 } from './event-loop';
+import { Case5 } from './event-loop';
 
-Case4();
+Case5();
 
 // import './app.css';
 
