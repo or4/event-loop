@@ -79,7 +79,7 @@ The only way to understand the workflow and the differences between these three 
 
 Though I am providing a short description of event loop here; but if you want to know it properly, you should read in depth explanation of event loop structure and workflow. (http://voidcanvas.com/nodejs-event-loop/)
 
-[event-loop]: ./event-loop.png "Event loop"
+[event-loop]: https://github.com/or4/event-loop/blob/master/src/event-loop-1.png "Event loop"
 
 * **Timer**: It handles the callbacks assigned by setTimeout & setInterval after the given time threshold is completed.
 * **I/O callbacks**: Handles all callbacks except the ones set by setTimeout, setInterval & setImmediate. It also does not have any close callbacks.
