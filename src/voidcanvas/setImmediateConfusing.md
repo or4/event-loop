@@ -1,5 +1,7 @@
 # setImmediate() vs nextTick() vs setTimeout(fn,0) – in depth explanation
 
+## this article 2017 year
+
 ## source: http://voidcanvas.com/setimmediate-vs-nexttick-vs-settimeout/
 
 Few days back, I was guiding some new node.js developers on making asynchronous stuffs. We were discussing about async apis of node js. I wanted to provide them with some references and googled for few; but surprisingly, majority of the articles out there in the internet about setImmediate() or process.nextTick() was containing insufficient or misleading information. And going through official documents of Node may not really be feasible for non-advanced developers. Hence I decided to come up with this article.
@@ -79,7 +81,7 @@ The only way to understand the workflow and the differences between these three 
 
 Though I am providing a short description of event loop here; but if you want to know it properly, you should read in depth explanation of event loop structure and workflow. (http://voidcanvas.com/nodejs-event-loop/)
 
-![event-loop](https://github.com/or4/event-loop/blob/master/src/event-loop-1.png "Event loop")
+![event-loop](https://github.com/or4/event-loop/blob/master/src/voidcanvas/event-loop-1.png "Event loop")
 
 * **Timer**: It handles the callbacks assigned by setTimeout & setInterval after the given time threshold is completed.
 * **I/O callbacks**: Handles all callbacks except the ones set by setTimeout, setInterval & setImmediate. It also does not have any close callbacks.
