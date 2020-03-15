@@ -17,6 +17,10 @@
 // * Next Ticks Queue — Callbacks added using process.nextTick function
 // * Other Microtasks Queue — Includes other microtasks such as RESOLVED PROMISE CALLBACKS
 
+// Изучить: порядок вызовов setImmediate и setTimeout в разных браузерах и последней версии node.js
+// Есть ли приоритет между Promise.resolve и Promise.reject
+// Как в браузерах и node отрабатывает Other Microtasks Queue
+
 export function Case4() {
     console.log('Union case 4\n\n');
     setTimeout(() => console.log('set timeout 1'));
