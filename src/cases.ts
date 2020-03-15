@@ -1,27 +1,4 @@
-// Кратко:
-// 1. Создание промиса (весь код внутри function(resolve, reject)— исполняется вполне себе синхронно.
-// 2. Для промисов и таймаутов в event loop предусмотрены 2 отдельные очереди,
-// и очередь колбэков промисов исполняется перед очередью таймаутов.
-
-// https://blog.insiderattack.net/event-loop-and-the-big-picture-nodejs-event-loop-part-1-1cb67a182810
-
-// *** There are 4 main types of queues that are processed by the native libuv event loop. ***
-
-// * Expired timers and intervals queue — consists of callbacks of
-//   expired timers added using setTimeout or interval functions added using setInterval.
-// * IO Events Queue — Completed IO events
-// * Immediates Queue — Callbacks added using setImmediate function
-// * Close Handlers Queue— Any close event handlers.
-
-// there are additionally 2 interesting queues as ‘intermediate queues’
-// * Next Ticks Queue — Callbacks added using process.nextTick function
-// * Other Microtasks Queue — Includes other microtasks such as RESOLVED PROMISE CALLBACKS
-
-// Изучить: порядок вызовов setImmediate и setTimeout в разных браузерах и последней версии node.js
-// Есть ли приоритет между Promise.resolve и Promise.reject
-// Как в браузерах и node отрабатывает Other Microtasks Queue
-
-export function Case4() {
+export function case4() {
     console.log('Union case 4\n\n');
     setTimeout(() => console.log('set timeout 1'));
 
@@ -82,7 +59,7 @@ export function Case4() {
     */
 }
 
-export function Case5() {
+export function case5() {
     Promise.resolve().then(() => {
         console.log('promise resolve 1'); // 1
         setTimeout(() => console.log('promise resolve set timeout 1')); // 6
@@ -106,7 +83,7 @@ export function Case5() {
     console.log('console.log 1'); // 0
 }
 
-export function Case1() {
+export function case1() {
     console.log('new Promise(...');
     let a = 5;
     setTimeout(function timeout() {
@@ -131,7 +108,7 @@ export function Case1() {
     // 25 console.log(a) из setTimeout
 }
 
-export function Case2() {
+export function case2() {
     console.log('Promise.resolve()');
     let a = 5;
     setTimeout(function timeout() {
@@ -155,7 +132,7 @@ export function Case2() {
     // 25 console.log(a) из setTimeout
 }
 
-export function Case3() {
+export function case3() {
     console.log('Promise.resolve() case 3');
     setTimeout(() => console.log('set timeout 1')); // 4
     setTimeout(() => console.log('set timeout 2')); // 5
