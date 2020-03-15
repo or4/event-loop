@@ -21,6 +21,10 @@ https://blog.insiderattack.net/event-loop-and-the-big-picture-nodejs-event-loop-
 * Next Ticks Queue — Callbacks added using process.nextTick function
 * Other Microtasks Queue — Includes other microtasks such as RESOLVED PROMISE CALLBACKS
 
+### Статья setTimeout vs setImmediate vs nextTick
+
+http://voidcanvas.com/setimmediate-vs-nexttick-vs-settimeout/
+
 ### Изучить
 
 * Порядок вызовов setImmediate и setTimeout в разных браузерах и последней версии node.js
