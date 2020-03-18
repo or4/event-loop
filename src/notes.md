@@ -30,3 +30,4 @@ http://voidcanvas.com/setimmediate-vs-nexttick-vs-settimeout/
 * Порядок вызовов setImmediate и setTimeout в разных браузерах и последней версии node.js
 * Есть ли приоритет между Promise.resolve и Promise.reject
 * Как в браузерах и node отрабатывает Other Microtasks Queue
+* https://stackoverflow.com/questions/10344498/best-way-to-iterate-over-an-array-without-blocking-the-ui
