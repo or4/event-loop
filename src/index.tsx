@@ -1,5 +1,6 @@
-// import { case5 } from './cases';
-// case5();
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import { order1 } from './compare';
-order1();
+import { App } from './browser';
+
+ReactDOM.render(<App />, document.getElementById('root'));
