@@ -1,23 +1,10 @@
 # Node.js event loop workflow & lifecycle in low level
 
-## this article 2018 year
+## This great article was copied from [link](http://voidcanvas.com/nodejs-event-loop/)
 
-## Source http://voidcanvas.com/nodejs-event-loop/
+This article 2018 year.
 
-A year back while describing the differences between setImmediate & process.nextTick (http://voidcanvas.com/setimmediate-vs-nexttick-vs-settimeout/), I wrote a bit on the low level architecture of node’s event-loop.
-Surprisingly, the readers of that post became more interested about the event-loop part, than the rest of the parts and I have received a lot of responses and queries on the same.
-That’s why I’ve decided to come up with a big picture of the low level work flow of node.js event loop.
-
-### Why am I writing this?
-
-Well, if I google about node.js event loop, majority of the articles out there does not describe the big picture (they try to describe with a very high level abstraction).
-
-**Screenshot skipped**
-
-This is a screenshot of google image search with nodejs event loop. And majority of the image results here are either wrong or having a very high level view on the actual event loop.
-Due to these kind of descriptions, developers often found with some misconceptions and wrong understandings. Below are some of the very common misconceptions.
-
-### Few common misconceptions
+## Few common misconceptions
 
 ### Event loop is inside JS Engine
 
@@ -39,7 +26,7 @@ Another great misconception is that the callback of setTimeout is pushed in a qu
 
 As the common event-loop description has only one queue; thus some developers think setImmediate() places the callback at the front of the job queue. This is completely false and every job-queue in JavaScript is FIFO (first in first out).
 
-### Architecture of the event loop
+## Architecture of the event loop
 
 Before we start describing the workflow of event loop, it’s important to know the architecture of the same.
 As I have already told, that little picture with a queue and a spinning wheel doesn’t describe it properly. Below is a phase wise image of the event loop.
@@ -126,7 +113,7 @@ After completing the tasks in check phase, event loop’s next destination is cl
 After event loop is done with close callback executions, it will check again if the loop is alive. If not, then it will simply exit. But if there are things, then it will go for the next iteration; thus, in the timer phase.
 If you consider our previous example of timer (A & B) expiration, then now in the timer phase it will check if timer C is elapsed or not.
 
-### nextTickQueue & microTaskQueue
+### nextTickQueue and microTaskQueue
 
 So, when do the callbacks of these two queues run? They run as soon as possible and definitely before going to the next phase from the current one. Unlike other phases these two don’t have any system dependent max limit and node executes them till the time they are completely empty. However, nextTickQueue gets more priority over microTaskQueue.
 
@@ -253,26 +240,26 @@ I’ve just added another setTimeout to print Other setTimeout with same delay t
 
 ## Few common questions
 
-### Where does the javascript get executed?
+### Where does the javascript get executed
 
 As many of us had an understanding of event-loop being spinning in a separate thread and pushing callbacks in a queue and from that queue one by one callbacks are executed; people when first read this post may get confused where exactly the JavaScript gets executed.
 Well, as I said earlier as well, there is only one single thread and the javascript executions are also done from the event loop itself using the v8 (or other) engine. The execution is completely synchronous and event-loops will not propagate if the current JavaScript execution is not completed.
 
-### Why do we need setImmediate, we have setTimeout(fn, 0)?
+### Why do we need setImmediate, we have setTimeout(fn, 0)
 
 First of all this is not zero. It is 1. Whenever you set a timer with any value lesser than 1 or grater than 2147483647ms, it is automatically set to 1. So whenever you try to set SetTimeout with zero, it become 1.
 
 setImmediate reduces the headache of extra checking as we already discussed. So setImmediate will make things faster. It is also placed right after poll phase, so any setImmediate callback invoked from a new incoming request will be executed soon.
 
-### Why setImmediate is called immediate?
+### Why setImmediate is called immediate
 
 Well, both setImmediate and process.nextTick has been named wrongly. Actually setImmediate phase is touched only once in a tick or iteration and nextTick is called as soon as possible. So functionally setImmediate is nextTick and nextTick is immediate. 😛
 
-### Can JavaScript be blocked?
+### Can JavaScript be blocked
 
 As we already have seen, nextTickQueue doesn’t have any limit of callback execution. So if you recursively call process.nextTick(), your program will never come out of it, irrespective of what all you have in other phases.
 
-### What if I call setTimeout in exit callback phase?
+### What if I call setTimeout in exit callback phase
 
 It may initiate the timer but the callback will never be called. Cause if node is in exit callbacks, then it has already came out of the event loop. Thus no question of going back and execute.
 
@@ -287,6 +274,6 @@ It may initiate the timer but the callback will never be called. Cause if node i
 ## Credits
 
 Well, I am not in the core node.js development team. All my knowledge regarding this article is earned from different talks and articles and experiments.
-Thanks to node.js doc (https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/) from where I first came to know about this.
-Secondly thanks to Saúl Ibarra Corretgé for his talk on libUV (https://www.youtube.com/watch?v=sGTRmPiXD4Y).
+Thanks to node.js [doc](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/) from where I first came to know about this.
+Secondly thanks to Saúl Ibarra Corretgé for his talk on [libUV](https://www.youtube.com/watch?v=sGTRmPiXD4Y).
 Third and most important, thanks to VoidCanvas readers who created many healthy discussions and experiments/examples to understand things and make life simpler 🙂

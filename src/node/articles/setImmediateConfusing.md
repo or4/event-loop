@@ -1,8 +1,8 @@
 # setImmediate() vs nextTick() vs setTimeout(fn,0) – in depth explanation
 
-## this article 2017 year
+## This article was copied from [link](http://voidcanvas.com/setimmediate-vs-nexttick-vs-settimeout/)
 
-## source: http://voidcanvas.com/setimmediate-vs-nexttick-vs-settimeout/
+This article 2017 year
 
 Few days back, I was guiding some new node.js developers on making asynchronous stuffs. We were discussing about async apis of node js. I wanted to provide them with some references and googled for few; but surprisingly, majority of the articles out there in the internet about setImmediate() or process.nextTick() was containing insufficient or misleading information. And going through official documents of Node may not really be feasible for non-advanced developers. Hence I decided to come up with this article.
 
