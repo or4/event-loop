@@ -1,5 +1,5 @@
-export function case4() {
-    console.log('Union case 4\n\n');
+export function case0() {
+    console.log('Union case\n\n');
     setTimeout(() => console.log('set timeout 1'));
 
     Promise.resolve().then(() => {
@@ -28,7 +28,7 @@ export function case4() {
 
     /*
     YaBro
-        Union case 4
+        Union case
         new Promise 1
         console log 1
         promise resolve 1
@@ -44,7 +44,7 @@ export function case4() {
 
     /*
     Node v10.14.2
-        Union case 4
+        Union case
         new Promise 1
         console log 1
         promise resolve 1
@@ -59,7 +59,7 @@ export function case4() {
     */
 }
 
-export function case5() {
+export function case1() {
     Promise.resolve().then(() => {
         console.log('promise resolve 1'); // 1
         setTimeout(() => console.log('promise resolve set timeout 1')); // 6
@@ -83,57 +83,7 @@ export function case5() {
     console.log('console.log 1'); // 0
 }
 
-export function case1() {
-    console.log('new Promise(...');
-    let a = 5;
-    setTimeout(function timeout() {
-        console.log(a);
-        a = 10;
-    }, 0);
-
-    const p = new Promise(function(resolve) {
-        console.log(a);
-        a = 25;
-        resolve();
-    });
-
-    p.then(function() {
-        // some code
-    });
-
-    console.log(a);
-
-    // 5 console.log(a) внутри промиса
-    // 25 финальный console.log(a);
-    // 25 console.log(a) из setTimeout
-}
-
 export function case2() {
-    console.log('Promise.resolve()');
-    let a = 5;
-    setTimeout(function timeout() {
-        console.log(a);
-        a = 10;
-    }, 0);
-
-    const p = Promise.resolve().then(function() {
-        console.log(a);
-        a = 25;
-    });
-
-    p.then(function() {
-        // some code
-    });
-
-    console.log(a);
-
-    // 5 финальный console.log(a);
-    // 5 console.log(a) внутри промиса
-    // 25 console.log(a) из setTimeout
-}
-
-export function case3() {
-    console.log('Promise.resolve() case 3');
     setTimeout(() => console.log('set timeout 1')); // 4
     setTimeout(() => console.log('set timeout 2')); // 5
 
