@@ -31,7 +31,7 @@ As the common event-loop description has only one queue; thus some developers th
 Before we start describing the workflow of event loop, it’s important to know the architecture of the same.
 As I have already told, that little picture with a queue and a spinning wheel doesn’t describe it properly. Below is a phase wise image of the event loop.
 
-![event-loop](https://github.com/or4/event-loop/blob/master/voidcanvas/nodejs-event-loop-phase.png "Event loop")
+![event-loop](https://github.com/or4/event-loop/blob/master/src/node/articles/nodejs-event-loop-phase.png "Event loop")
 
 Each boxes in the image above indicates a phase which is dedicated to perform some specific work. Each phase has a queue (I said queue so that you can understand better; the actual data structure may not be a queue) attached to it and JavaScript execution can be done in any of those phases (except idle & prepare).
 You can also see a nextTickQueue and another microTaskQueue in the picture, which are not really part of the loop and the callbacks inside them can be executed in any phase. They get highest priorities to get executed.
@@ -77,7 +77,7 @@ These two are not really part of the event loop, i.e. not developed inside libUV
 When you run node my-script.js in your console, node sets up the event-loop and then runs your main module (my-script.js) outside the event loop. Once the main module is executed, node will check if the loop is alive; i.e. if there is something to do in event loop. If no, then it will simply try to exit after executing the exit callbacks. i.e. process.on('exit', foo) callbacks.
 But if the loop is alive, node will enter the loop from the timer phase.
 
-![event-loop-workflow](https://github.com/or4/event-loop/blob/master/voidcanvas/nodejs-event-loop-workflow.png "Event loop workflow")
+![event-loop-workflow](https://github.com/or4/event-loop/blob/master/src/node/articles/nodejs-event-loop-workflow.png "Event loop workflow")
 
 ### Timer phase workflow
 
@@ -86,7 +86,7 @@ Actually the timer scripts are stored in a heap memory in ascending order. So it
 
 Suppose you have called setTimeout 4 times which has created 4 timers (A, B, C and D) with time threshold of 100, 200, 300 and 400 milliseconds at (nearly) time t.
 
-![flow](https://github.com/or4/event-loop/blob/master/voidcanvas/flow.png "flow")
+![flow](https://github.com/or4/event-loop/blob/master/src/node/articles/flow.png "flow")
 
 Suppose event loop entered the timer phase at time t+250. It will first find timer A and will see its time of expiration was t+100. But now the time is already t+250. Thus it will execute the callback attached to timer A. Then it will check B timer and find it was also elapsed at t+200, so will do the same with this as well. Now it will go and check C and will find that the time to elapse is t+300, and thus will leave it as is. Event loop will not check D because the timer were sorted in ascending order; so D’s threshold is bound to be bigger than C.
 However the phase also has a system dependent hard limit, so even if there are elapsed un-executed timers, but that system dependent max limit is touched, it will move to the next phase.

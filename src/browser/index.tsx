@@ -125,7 +125,8 @@ export function startTest() {
 
     // Test end
     // window.setTimeout(function() {
-    //     endTest();
+    endTest();
+    endTest();
     // }, 500);
 
     log('script end');
